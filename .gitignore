@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# config/tweet files
+config.json
+turn.txt
+tweets.txt
+
