@@ -1,14 +1,17 @@
 import os
+import sys
 import json
 import unittest
-import tweetme
-from birdy.twitter import UserClient
 
 
 class TestConfigFile(unittest.TestCase):
     """
     This test module will run only to test manage_token() method.
+
+    Note: Numbers just after `test_` are important as they facilitate test to run in
+          specific order as `unittest` runs test in alphabetical order of thier names.
     """
+
 
     def test_1_nofile(self):
         """
@@ -54,36 +57,18 @@ class TestConfigFile(unittest.TestCase):
             self.assertTrue(False)
 
 
-@unittest.skipIf(not tweetme.manage_token(), ("Twitter API cannot be tested if config.json is "
-                             "not present with valid Token/Keys."))
-class TestTwitterAPI(unittest.TestCase):
-    """
-    This module is used to test Twitter API with the given configurations.
-    """
+'''
+Since tweetme.py is now present in parent directory we need to add appropriate path in order to
+access it as a module.
+Path is added with respect to the location user is running the tests from.
+'''
+parent_directory_path = os.getcwd().split('/')
+if 'tests' in parent_directory_path:
+    parent_directory_path = parent_directory_path[:len(os.getcwd().split('/'))-1]
+parent_directory_path = '/'.join(parent_directory_path)
+if parent_directory_path not in sys.path:
+    sys.path.append(parent_directory_path)
 
-    username = 'TheGeekyWay'
-    keys = tweetme.manage_token()
+import tweetme
 
-    def test_1_api_call(self):
-        client = UserClient(*self.keys)
-        self.assertTrue(client.api.users.show.get(screen_name=self.username).data["screen_name"], self.username)
-
-
-class TestGettingTweets(unittest.TestCase):
-    """
-    Test the function get_tweet for Tweets file
-    """
-    def test_1_without_tweets_file(self):
-        self.assertFalse(tweetme.get_tweet(tweets_file='temptweets.txt', turn_file='tempturn.txt'))
-
-    def test_2_removing_temp_files(self):
-        try:
-            os.remove("temptweets.txt")
-            os.remove("tempturn.txt")
-            self.assertTrue(True)
-        except:
-            self.assertTrue(False)
-
-
-if __name__ == '__main__':
-    unittest.main()
+unittest.main()

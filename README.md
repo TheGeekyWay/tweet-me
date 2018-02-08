@@ -19,7 +19,7 @@ A bot to tweet articles from www.TheGeekyWay.com
 
 ### The First Run
 
-- Run the command `pipenv run python tweetme.py`. You'll get a message asking you to add Twitter API configuration inside config.txt. Use [Twitter Application Management](https://apps.twitter.com) and create a new application.
+- Run the command `pipenv run python tweetme.py`. You'll get a message asking you to add Twitter API configuration inside `config.json`. Use [Twitter Application Management](https://apps.twitter.com) and create a new application.
 
 ### Ready, Set, Go
 
@@ -30,8 +30,11 @@ A bot to tweet articles from www.TheGeekyWay.com
 ### Hello Hello Testing
 
 - tweet-me supports unit testing with the help of `unittest` module by python.
-- Run `pipenv run python testtweetme.py` to use testing module.
-- To understand what is being tested feel free to open `testtweetme.py` and it has been self documented.
+- There are 3 type of test you can perform.
+    1) Testing for configuration file by running `pipenv run python tests/test_config.py`
+    2) Testing for tweets file by running `pipenv run python tests/test_getting_tweets.py`
+    3) Testing for Twitter API by running `pipenv run python tests/test_twitter_api.py`
+- To understand what is being tested feel free to open above files as it has been self documented.
 
 ### How everything works
 
@@ -44,4 +47,4 @@ A bot to tweet articles from www.TheGeekyWay.com
 
 ### Contributors
 
-- [Shashank Kumar](https://github.com/realslimshanky) (@realslimshanky)
+- [Shashank Kumar](https://blog.shankyxyz) (@realslimshanky)

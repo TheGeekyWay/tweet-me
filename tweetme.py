@@ -36,7 +36,7 @@ def manage_token(filename="config.json"):
                 return False
 
 
-def get_tweet(tweets_file='tweets.txt', turn_file='turn.txt'):
+def get_tweet(tweets_file='tweets.txt', turn_file='next_tweet_index.txt'):
     """
     This function reads Tweets file and Turn file and gets the next tweet.
 
@@ -53,16 +53,16 @@ def get_tweet(tweets_file='tweets.txt', turn_file='turn.txt'):
         return False
     
     elif turn_file not in os.listdir():
-        """When turn.txt is not present, creates a new turn.txt and writes 1 in it
+        """When next_tweet_index.txt is not present, creates a new next_tweet_index.txt and writes 1 in it
         and return the first tweet from tweets.txt"""
         with open(turn_file, mode='w') as f:
             f.write('1')
         with open(tweets_file, mode='r') as f:
-            Tweet =  f.readline()
-        return Tweet.split("::")
+            tweet_text =  f.readline()
+        return tweet_text.split("::")
     else:
-        """When both files are present, check turn.txt and use it's value as index to
-        find the next tweet from tweets.txt and write index + 1 in turn.txt"""
+        """When both files are present, check next_tweet_index.txt and use it's value as index to
+        find the next tweet from tweets.txt and write index + 1 in next_tweet_index.txt"""
         with open(turn_file, mode='r') as f:
             turn = int(f.readline())
         with open(tweets_file, mode='r') as f:
@@ -80,7 +80,7 @@ def manage_twitter_client():
     """
 
     configError = ("Please open config.json file located in the project "
-        "directory and relace the value '0' of all the tokens and keys in "
+        "directory and replace the value '0' of all the tokens and keys in "
         "order to make this bot work. Visit https://apps.twitter.com/ in "
         "order to get your tokens and keys.")
 
@@ -91,8 +91,9 @@ def manage_twitter_client():
         tweet = get_tweet()
         if tweet:
             client = UserClient(*keys)
-            response = client.api.statuses.update.post(status='{} \n {}'.format(tweet[0], tweet[1]))
-            print('You tweet is out in the world.\nCheck it out https://twitter.com/{}/status/{}'.format(
+            response = client.api.statuses.update.post(status='{} {}'.format(tweet[0], tweet[1]))
+            print(('You tweet is out in the world.'
+                  'Check it out https://twitter.com/{}/status/{}').format(
                                                             response.data["user"]["screen_name"],
                                                             response.data["id_str"]))
 
