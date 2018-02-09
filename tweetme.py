@@ -1,8 +1,10 @@
 import os
 import json
 import twitter
+import logging
 from birdy.twitter import UserClient
 
+logging.basicConfig(filename='tweetme.log', format='%(asctime)s %(message)s', level=logging.DEBUG)
 
 def manage_token(filename="config.json"):
     """
@@ -86,14 +88,14 @@ def manage_twitter_client():
 
     keys = manage_token()
     if not keys:
-        print(configError)
+        logging.error(configError)
     else:
         tweet = get_tweet()
         if tweet:
             client = UserClient(*keys)
             response = client.api.statuses.update.post(status='{} {}'.format(tweet[0], tweet[1]))
-            print(('You tweet is out in the world.'
-                  'Check it out https://twitter.com/{}/status/{}').format(
+            logging.info(('You tweet is out in the world.'
+                          'Check it out https://twitter.com/{}/status/{}').format(
                                                             response.data["user"]["screen_name"],
                                                             response.data["id_str"]))
 
