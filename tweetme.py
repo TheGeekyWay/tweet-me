@@ -6,7 +6,7 @@ from birdy.twitter import UserClient
 
 logging.basicConfig(filename='tweetme.log', format='%(asctime)s %(message)s', level=logging.DEBUG)
 
-def manage_token(filename="config.json"):
+def get_config_from_file(filename="config.json"):
     """
     This function will check for the config.json file which holds the Twitter API
     Tokens and Keys and will also give a user friendly message if they are
@@ -38,7 +38,7 @@ def manage_token(filename="config.json"):
                 return False
 
 
-def get_tweet(tweets_file='tweets.txt', turn_file='next_tweet_index.txt'):
+def get_next_tweet_from_file(tweets_file='tweets.txt', turn_file='next_tweet_index.txt'):
     """
     This function reads Tweets file and Turn file and gets the next tweet.
 
@@ -86,11 +86,11 @@ def manage_twitter_client():
         "order to make this bot work. Visit https://apps.twitter.com/ in "
         "order to get your tokens and keys.")
 
-    keys = manage_token()
+    keys = get_config_from_file()
     if not keys:
         logging.error(configError)
     else:
-        tweet = get_tweet()
+        tweet = get_next_tweet_from_file()
         if tweet:
             client = UserClient(*keys)
             response = client.api.statuses.update.post(status='{} {}'.format(tweet[0], tweet[1]))

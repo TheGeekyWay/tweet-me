@@ -11,8 +11,8 @@ class TestTwitterAPI(unittest.TestCase):
     username = 'TheGeekyWay'
     
     def test_api_call(self):
-        keys = tweetme.manage_token()
-        if not tweetme.manage_token():
+        keys = tweetme.get_config_from_file()
+        if not tweetme.get_config_from_file():
             print(("Twitter API cannot be tested if config.json is "
                                 "not present with valid Token/Keys."))
         else:

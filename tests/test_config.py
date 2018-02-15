@@ -6,7 +6,7 @@ import unittest
 
 class TestConfigFile(unittest.TestCase):
     """
-    This test module will run only to test manage_token() method.
+    This test module will run only to test get_config_from_file() method.
 
     Note: Naming after `test_` are important as they facilitate test to run in
           specific order as `unittest` runs test in alphabetical order of thier names.
@@ -18,7 +18,7 @@ class TestConfigFile(unittest.TestCase):
         Case: When no config.json is present in the project directory.
         """
 
-        self.assertFalse(tweetme.manage_token('testconfig.json'))
+        self.assertFalse(tweetme.get_config_from_file('testconfig.json'))
 
     
     def test_config_file_present(self):
@@ -27,7 +27,7 @@ class TestConfigFile(unittest.TestCase):
         In this case, config.json contains atlest 1 Token/Key as 0.
         """
 
-        self.assertFalse(tweetme.manage_token('testconfig.json'))
+        self.assertFalse(tweetme.get_config_from_file('testconfig.json'))
 
     
     def test_config_file_validation(self):
@@ -42,7 +42,7 @@ class TestConfigFile(unittest.TestCase):
                         'access_token': 1,
                         'access_token_secret': 1,
                         }, f)
-        self.assertTrue(tweetme.manage_token('testconfig.json'))
+        self.assertTrue(tweetme.get_config_from_file('testconfig.json'))
 
     
     def test_removing_config(self):
