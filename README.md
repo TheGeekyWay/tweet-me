@@ -10,7 +10,11 @@ A bot to tweet articles from www.TheGeekyWay.com
 
 ### Important files
 
-- Create a file named `tweets.txt` whose each line should be in below format
+- `tweets.txt` is used to fetch posts one by one in order to send tweet.
+
+- To create `tweet.txt` using feed url (atom/rss) run `python tweetscreation.py feed_url`, replace feed_url with your atom/rss feed url.
+
+- Alternatively you can do it manually, create a file named `tweets.txt` whose each line should be in below format
 
 `What are dotfiles? :: http://thegeekyway.com/what-are-dotfiles/`
 `[Ultimate Guide] How SSH works? :: http://thegeekyway.com/ultimate-guide-how-ssh-works/`
