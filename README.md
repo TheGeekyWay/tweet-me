@@ -17,6 +17,7 @@ A bot to tweet articles from www.TheGeekyWay.com
 - Alternatively you can do it manually, create a file named `tweets.txt` whose each line should be in below format
 
 `What are dotfiles? :: http://thegeekyway.com/what-are-dotfiles/`
+
 `[Ultimate Guide] How SSH works? :: http://thegeekyway.com/ultimate-guide-how-ssh-works/`
 
 - As you can see, each line has two parts separated by `::`. It's upto you what the content should be for each part.
