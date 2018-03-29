@@ -13,6 +13,7 @@ name = "pypi"
 
 python-twitter = "==3.3"
 birdy = "*"
+feedparser = "*"
 
 
 [requires]
