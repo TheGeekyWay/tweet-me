@@ -48,4 +48,4 @@ A bot to tweet articles from www.TheGeekyWay.com
 
 ### Contributors
 
-- [Shashank Kumar](https://blog.shankyxyz) (@realslimshanky)
+- [Shashank Kumar](https://blog.shanky.xyz) (@realslimshanky)
